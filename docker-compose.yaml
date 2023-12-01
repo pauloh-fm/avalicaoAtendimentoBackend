@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8099:8081
+    environment:
+      ME_CONFIG_BASICAUTH_USERNAME: root
+      ME_CONFIG_BASICAUTH_PASSWORD: ferramental
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ferramental
+    links:
+      - mongo
+    networks:
+      - mongo-compose-ferramental
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: ferramental
+    ports:
+      - "27017:27017"
+    volumes:
+      - /home/paulo/Documentos/projetoAvalicaoMobile/avalicaoAtendimentoBackend/MongoDB:/data/db
+    networks:
+      - mongo-compose-ferramental
+
+networks: 
+    mongo-compose-ferramental:
+      driver: bridge
