@@ -1,8 +1,8 @@
-const express = require('express');
-const router = express.Router();
-const avaliacaoController = require('../controllers/avaliacaoController');
+import { Router } from 'express';
+const router = Router();
+import AvaliacaoController from "../controllers/avalicaoController.js";
 
 // Rota para obter avaliações
-router.get('/avaliacoes', avaliacaoController.obterAvaliacoes);
+router.post('/avaliar', AvaliacaoController.enviarAvaliacao);
 
-module.exports = router;
+export default router;
